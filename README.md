@@ -78,11 +78,22 @@ Connectez-vous ensuite sur `http://localhost:5173` avec le compte administrateur
 
 ---
 
+## 💿 Compiler en installateur Windows (Setup_SIGMA.exe)
+
+SIGMA peut être compilé en un installateur Windows unique — serveur + PostgreSQL embarqué +
+frontend, enregistré comme service Windows au démarrage automatique — conformément à la
+vision du cahier des charges (§22, §29). Voir **`deployment/README.md`** pour le détail complet
+(compilation automatique via GitHub Actions, ou compilation locale sur une machine Windows).
+
 ## 🏗️ Architecture du dépôt
 
 ```
 sigma/
 ├── docker-compose.yml
+├── .github/workflows/build-windows-installer.yml  # Compilation auto en Setup_SIGMA.exe
+├── deployment/                 # Packaging Windows (voir deployment/README.md)
+│   ├── pyinstaller/            # launcher.py + spec PyInstaller
+│   └── inno-setup/             # Script installateur (installer.iss)
 ├── server/                    # API FastAPI
 │   ├── app/
 │   │   ├── main.py            # Point d'entrée FastAPI
